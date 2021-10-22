@@ -18,9 +18,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Auth\LoginController;
+
 /*
+
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routesdfdfd
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -32,9 +34,15 @@ use App\Http\Controllers\Auth\LoginController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+ 
+
+Route::get('/', [LoginController::class, 'showLoginForm']); 
 
 
-Route::get('/', [LoginController::class, 'showLoginForm']);
+
+
+
+
 
 Auth::routes(['verify' => true]);
 
