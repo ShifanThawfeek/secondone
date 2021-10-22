@@ -1,0 +1,379 @@
+ye@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700;800&display=swap');
+body {
+    background-color: #ffffff;
+    font-family: "Josefin Sans"!important;
+}
+.jose {
+    font-family: "Josefin Sans"!important;
+}
+.container {
+    max-width: 80% !important;
+}
+/* .bg-main {
+    background: #17D8E2 !important;
+} */
+.bg-main {
+    background: #40FF99  !important;
+}
+.main-color {
+    color: #17D8E2 !important;
+}
+.logo {
+    height: 50px;
+}
+.padded {
+    padding: 40px 40px 40px 40px;
+}
+.padded-y {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.padded-x {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.hero {
+    margin-top: 100px;
+}
+
+
+input.form-control {
+    background: #8080802b;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-radius: 45px;
+    padding-left: 31px;
+    transition: .5s;
+}
+input.form-control:hover {
+    background: #f8f9fa;
+    transition: .5s;
+}
+input.form-control:focus {
+    box-shadow: 0px 0px 0px 0px !important;
+    border: 1px solid #17D8E2;
+}
+.btn-login {
+    border-radius: 24px;
+    background: #17d8e2;
+    color: white;
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+.btn-login:hover {
+    background: white;
+    color: #17d8e2;
+    border: 1px solid #17d8e2;
+}
+.hero-text {
+    font-size: 40px;
+}
+.feature-text {
+    /*font-size: 60px !important;
+    color: #17D8E2;*/
+    /* font-size: 68px !important; */
+    font-size: 29px !important;
+    font-weight: bold;
+    color: #3D1BFF ;
+    /* line-height: 66px; */
+    /* word-spacing: 15px; */
+    /* margin-bottom: 35px; */
+}
+
+@media screen and (max-width: 1200px) {
+    .logo-hero {
+        height: 200px !important;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .feature-text {
+        /* font-size: 26px !important; */
+        font-size: 17px !important;
+        color: #3D1BFF;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .feature-image {
+        max-width: 100%;
+        height: 250px !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 100% !important;
+    }
+    .feature-text {
+        /* font-size: 30px !important; */
+        text-align: center;
+    }
+    .card {
+        margin-top: 20px;
+    }
+    .h4 {
+        font-size: 18px;
+        text-align: center;
+    }
+    .padded {
+        padding: 20px;
+    }
+    .container.padded-y.hero {
+        margin-top: -10px !important;
+    }
+    .hero-text {
+        font-size: 24px;
+    }
+    .hero-sub-text {
+        margin-bottom: -30px;
+    }
+    .lgsi{
+        font-size: 14px;
+        padding-left: 30px;
+      }
+}
+
+a#switch {
+    color: #17d8e2;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 15px;
+}
+
+.cle {
+    margin-top: 15px;
+    color: #000;
+}
+
+.line_or {
+   width: 100%; 
+   text-align: center; 
+   border-bottom: 2px solid #e6e6e6;
+   line-height: 0.1em;
+   margin: 25px 0 20px; 
+} 
+
+.line_or span { 
+    background:#fff; 
+    padding:0 10px; 
+}
+
+
+.lgsi {
+    display: flex;
+    width: 100%;
+    margin-bottom: 17px;
+    padding: 11px 0;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    padding-left: 35px;
+    font-weight: bold;
+}
+
+.lgsi:hover {
+    color: #00e7f3;
+    opacity: 0.8;
+    transition-duration: 0.3s;
+}
+
+.lgsi span {
+    margin-left: 15px;
+}
+
+.login-twiter {
+    background: rgb(84, 154, 244);
+    color: #fff !important;
+}
+
+.login-fb {
+    background: rgb(45, 107, 187);
+    color: #fff;
+}
+
+.login-fb img {
+    background: #fff;
+    padding: 4px 10px;
+}
+
+.login-google {
+    background: rgb(64, 131, 216);
+    color: #fff;
+}
+
+.login-google img {
+    padding: 3px 5px;
+    background: #fff;
+}
+
+
+.table-wrap {
+  background: #fff;
+}
+
+.table tbody tr:nth-child(odd) {
+  background: #f3f3f3;
+}
+
+@media (min-width: 768px) {
+  .table thead tr th,
+  .table tbody tr td {
+    padding: 15px 20px;
+  }
+}
+
+.tb-price .table thead th{
+    border-bottom: none;
+}
+
+.tb-price .table td, .table th {
+    border-bottom: none;
+    border-top: none;
+}
+
+
+.col-tb-sec {
+    text-align: center;
+}
+
+.col-tb-sec b {
+    font-size: 25px;
+}
+
+@media (min-width: 991px) {
+  .col-tb-sec {
+    width: 23%;
+    }
+}
+
+
+.col-tb-only {
+    width: 70%;
+    text-align: center;
+}
+
+.col-tb-only {
+    color: #3D1BFF ;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.col-tb-only b {
+    font-size: 2.8em;
+    font-style: italic;
+    line-height: 30px;
+    font-family: monospace;
+}
+
+.col-tb-only span {
+    color: #484848;
+    font-style: oblique;
+    text-decoration: line-through;
+    font-weight: bold;
+}
+
+
+
+.title-tag-line {
+    position: relative;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 100px;
+    /* margin-bottom: 45px; */
+}
+
+.title-tag-line b {
+    display: block;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    height: 5px;
+    opacity: 0.3;
+    background-color: currentColor;
+}
+
+
+
+
+.v-text-field .v-input__prepend-inner,
+.v-text-field .v-input__append-inner {
+  align-self: flex-start;
+  display: inline-flex;
+  border: 0.07px solid black;
+  border-radius: 5px;
+  margin-top: 4px;
+  line-height: 1;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+
+
+
+/* div {
+    white-space: nowrap;
+    overflow: hidden;
+  } */
+
+.title-tag-line span {
+    /* font-size: 3.1em; */
+    font-size: calc(0.5em + 3vw);
+    padding: 0 25px;
+    color: #3D1BFF;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media (min-width: 991px) {
+    .topic-price {
+        position: absolute;
+        top: -18px;
+        right: 0;
+        background: #3D1BFF ;
+        color: #fff;
+        padding: 8px 40px;
+        border-radius: 28px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+
+.text-p {
+    margin-top: 50px;
+    font-size: 1.5em;
+}
+
+.my-21 {
+    display: block;
+}
+
+.btn-login {
+    border-radius: 24px;
+    background: #40FF99;
+    color: white;
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+
+
+/*.sale_month {
+    background: url(../assets/images/ly.png);
+}*/
+

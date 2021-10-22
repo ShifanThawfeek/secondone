@@ -1,0 +1,98 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Vuetify
+@import '~vuetify/dist/vuetify.min.css';
+
+// Vuetify Files
+@import "https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css";
+@import "https://fonts.googleapis.com/css?family=Material+Icons";
+@import '~vuetify/dist/vuetify.css';
+@import "https://use.fontawesome.com/releases/v5.8.1/css/all.css";
+
+.v-btn__content {
+    align-items: center;
+    color: inherit;
+    // display: flex;
+    // flex: 1 0 auto;
+    justify-content: inherit;
+    line-height: normal;
+    position: relative;
+    transition: inherit;
+    transition-property: opacity;
+    max-width: 250px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: initial;
+}
+
+
+// When the width of this document is 1024 pixels or more, follow these
+@media only screen and (min-width: 1024px) {
+    .v-btn__content {
+        align-items: center;
+        color: inherit;
+        justify-content: inherit;
+        line-height: normal;
+        position: relative;
+        transition: inherit;
+        transition-property: opacity;
+        max-width: 770px;
+        display: inline-block;
+        white-space: normal;
+    }
+
+
+    .zoom {
+        // padding: 50px;
+        // background-color: green;
+        transition: transform .2s; /* Animation */
+        // width: 200px;
+        // height: 200px;
+        // margin: 0 auto;
+      }
+    
+      .zoom:hover {
+        transform: scale(1.5); /* (150% zoom)*/
+      }
+    
+
+
+      .container {
+        width: 100%;
+        /* padding: 12px; */
+        padding-top: 24px;
+        padding-right: 12px;
+        padding-bottom: 24px;
+        padding-left: 12px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+
+      .bg-main {
+        background: #40FF99  !important;
+    }
+
+
+    .v-application .cyan.accent-3 {
+      background-color: #40FF99!important;
+      border-color: #40FF99!important;
+  }
+
+
+  
+element.style {
+  border-radius: 0px;
+  background: #40FF99!important;
+}
+
+
+
+  }
