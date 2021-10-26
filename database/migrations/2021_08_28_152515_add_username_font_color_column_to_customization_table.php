@@ -26,7 +26,7 @@ class AddUsernameFontColorColumnToCustomizationTable extends Migration
     public function down()
     {
         Schema::table('customizations', function (Blueprint $table) {
-            //
+            $table->dropColumn('usernameFontColor');
         });
     }
 }

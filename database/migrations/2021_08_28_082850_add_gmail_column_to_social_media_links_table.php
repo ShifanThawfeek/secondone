@@ -26,7 +26,7 @@ class AddGmailColumnToSocialMediaLinksTable extends Migration
     public function down()
     {
         Schema::table('social_media_links', function (Blueprint $table) {
-            //
+            $table->dropColumn('gmail');
         });
     }
 }

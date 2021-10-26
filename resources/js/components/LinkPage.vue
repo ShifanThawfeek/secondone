@@ -57,7 +57,7 @@
         </div>
 
         <!-- Links -->
-        <div class="justify-center">
+        <!-- <div class="justify-center">
           <v-btn
             @mousemove="onMouseOver(link.id)"
             @mouseout="onMouseOut(link.id)"
@@ -82,8 +82,461 @@
           >
             {{ link.name }}
           </v-btn>
+        </div> -->
+
+        <!-- button customization NOT THEME -->
+        <div
+          v-if="user.customization.theme_no == is_null"
+          class="justify-center"
+        >
+          <v-btn
+            @mousemove="onMouseOver(link.id)"
+            @mouseout="onMouseOut(link.id)"
+            ref="button"
+            v-for="(link, index) in SortBylinksOrder(links)"
+            :id="link.id"
+            :key="index"
+            @click="analytic(link)"
+            block
+            class="main-btn my-3"
+            elevation="0"
+            large
+            style="
+              height: auto;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              padding-left: 10px;
+              padding-right: 10px;
+            "
+            :style="`
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                        background: ${user.customization.buttonBackground};
+                        border: ${user.customization.buttonBorderSize}px solid ${user.customization.buttonBorder};
+                        color: ${user.customization.fontColor};
+                        border-radius: ${user.customization.borderRadius}px;
+                    `"
+          >
+            {{ link.name }}
+          </v-btn>
         </div>
 
+        <!-- Theme Styles Image acts as button -->
+        <!-- Purple Dream -->
+        <div v-if="user.customization.theme_no == 1.1" class="justify-center">
+          <v-img
+            src="https://www.mataonme.com/assets/images/2_2_2.png"
+            @mousemove="onMouseOver(link.id)"
+            @mouseout="onMouseOut(link.id)"
+            v-for="(link, index) in SortBylinksOrder(links)"
+            :id="link.id"
+            :key="index"
+            @click="analytic(link)"
+            block
+            class="main-btn my-3"
+            elevation="0"
+            large
+            :style="`
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                    `"
+          >
+            <div
+              style="
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                color: #000000;
+                transform: translate(-50%, -50%);
+
+                align-items: center;
+                justify-content: inherit;
+                line-height: normal;
+                position: relative;
+                transition: inherit;
+                max-width: 250px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                white-space: initial;
+                text-align: center;
+              "
+            >
+              {{ link.name }}
+            </div>
+          </v-img>
+        </div>
+
+        <!-- shortcake -->
+        <div v-if="user.customization.theme_no == 2">
+          <v-img
+            src="https://www.mataonme.com/assets/images/3_3_3.png"
+            @mousemove="onMouseOver(link.id)"
+            @mouseout="onMouseOut(link.id)"
+            v-for="(link, index) in SortBylinksOrder(links)"
+            :id="link.id"
+            :key="index"
+            @click="analytic(link)"
+            block
+            class="main-btn my-3"
+            elevation="0"
+            large
+            :style="`
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                    `"
+          >
+            <!-- Styles for the link description font -->
+            <div
+              style="
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #212931;
+
+                align-items: center;
+                justify-content: inherit;
+                line-height: normal;
+                position: relative;
+                transition: inherit;
+                max-width: 250px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                white-space: initial;
+                text-align: center;
+              "
+            >
+              {{ link.name }}
+            </div>
+          </v-img>
+        </div>
+
+        <!-- Rainbow Sketch -->
+        <div v-if="user.customization.theme_no == 1" class="justify-center">
+        <v-img
+          src="http://www.mataonme.com/assets/images/8.png"
+          @mousemove="onMouseOver(link.id)"
+          @mouseout="onMouseOut(link.id)"
+          v-for="(link, index) in SortBylinksOrder(links)"
+          :id="link.id"
+          :key="index"
+          @click="analytic(link)"
+          block
+          class="main-btn my-3"
+          elevation="0"
+          large
+          :style="`
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                    `"
+        >
+          <!-- Styles for the link description font -->
+          <div
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              align-items: center;
+              color: inherit;
+              justify-content: inherit;
+              line-height: normal;
+              position: relative;
+              transition: inherit;
+              transition-property: opacity;
+              max-width: 250px;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              white-space: initial;
+              text-align: center;
+            "
+          >
+            {{ link.name }} 
+            </div>
+        </v-img>
+      </div>
+
+      <!-- Retro -->
+      <div v-if="user.customization.theme_no == 2.1" class="justify-center">
+        <v-img
+          src="http://www.mataonme.com/assets/images/5_5_5.png"
+          @mousemove="onMouseOver(link.id)"
+          @mouseout="onMouseOut(link.id)"
+          v-for="(link, index) in SortBylinksOrder(links)"
+          :id="link.id"
+          :key="index"
+          @click="analytic(link)"
+          block
+          class="main-btn my-3"
+          elevation="0"
+          large
+          :style="`  
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                    `"
+          >
+          <!-- Styles for the link description font -->
+          <div
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+
+              align-items: center;
+              color: inherit;
+              justify-content: inherit;
+              line-height: normal;
+              position: relative;
+              transition: inherit;
+              transition-property: opacity;
+              max-width: 250px;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              white-space: initial;
+              text-align: center;
+            "
+          >
+        {{ link.name }}
+          </div>
+        </v-img>
+      </div>
+
+      <!-- Diary Clouds -->
+      <div v-if="user.customization.theme_no == 2.2" class="justify-center">
+        <v-img
+          src="http://www.mataonme.com/assets/images/7_7_7.png"
+          @mousemove="onMouseOver(link.id)"
+          @mouseout="onMouseOut(link.id)"
+          v-for="(link, index) in SortBylinksOrder(links)"
+          :id="link.id"
+          :key="index"
+          @click="analytic(link)"
+          block
+          class="main-btn my-3"
+          elevation="0"
+          large
+          :style="`
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                    `"
+        >
+          <!-- Styles for the link description font -->
+          <div
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+
+              align-items: center;
+              color: inherit;
+              justify-content: inherit;
+              line-height: normal;
+              position: relative;
+              transition: inherit;
+              transition-property: opacity;
+              max-width: 250px;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              white-space: initial;
+              text-align: center;
+            "
+          >
+            {{ link.name }}
+          </div>
+        </v-img>
+      </div>
+
+      <!-- Mono.KR -->
+      <div v-if="user.customization.theme_no == 2.3" class="justify-center">
+        <v-img
+          src="http://www.mataonme.com/assets/images/8_8_8.png"
+          @mousemove="onMouseOver(link.id)"
+          @mouseout="onMouseOut(link.id)"
+          v-for="(link, index) in SortBylinksOrder(links)"
+          :id="link.id"
+          :key="index"
+          @click="analytic(link)"
+          block
+          class="main-btn my-3"
+          elevation="0"
+          large
+          :style="`
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                    `"
+        >
+          <!-- Styles for the link description font -->
+          <div
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+
+              align-items: center;
+              color: inherit;
+              justify-content: inherit;
+              line-height: normal;
+              position: relative;
+              transition: inherit;
+              transition-property: opacity;
+              max-width: 250px;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              white-space: initial;
+              text-align: center;
+            "
+          >
+            {{ link.name }}
+          </div>
+        </v-img>
+      </div>
+
+      <!-- Peanut Butter -->
+      <div v-if="user.customization.theme_no == 3.1" class="justify-center">
+        <v-img
+          src="http://www.mataonme.com/assets/images/9_9_9.png"
+          @mousemove="onMouseOver(link.id)"
+          @mouseout="onMouseOut(link.id)"
+          v-for="(link, index) in SortBylinksOrder(links)"
+          :id="link.id"
+          :key="index"
+          @click="analytic(link)"
+          block
+          class="main-btn my-3"
+          elevation="0"
+          large
+          :style="`
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                    `"
+        >
+          <!-- Styles for the link description font -->
+          <div
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+
+              align-items: center;
+              color: inherit;
+              justify-content: inherit;
+              line-height: normal;
+              position: relative;
+              transition: inherit;
+              transition-property: opacity;
+              max-width: 250px;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              white-space: initial;
+              text-align: center;
+            "
+          >
+            {{ link.name }}
+          </div>
+        </v-img>
+      </div>
+
+      <!-- Summer Pool -->
+      <div v-if="user.customization.theme_no == 3.2" class="justify-center">
+        <v-img
+          src="http://www.mataonme.com/assets/images/1_1_1.png"
+          @mousemove="onMouseOver(link.id)"
+          @mouseout="onMouseOut(link.id)"
+          v-for="(link, index) in SortBylinksOrder(links)"
+          :id="link.id"
+          :key="index"
+          @click="analytic(link)"
+          block
+          class="main-btn my-3"
+          elevation="0"
+          large
+          :style="`
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                    `"
+        >
+          <!-- Styles for the link description font -->
+          <div
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+
+              align-items: center;
+              color: inherit;
+              justify-content: inherit;
+              line-height: normal;
+              position: relative;
+              transition: inherit;
+              transition-property: opacity;
+              max-width: 250px;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              white-space: initial;
+              text-align: center;
+            "
+          >
+            {{ link.name }}
+          </div>
+        </v-img>
+      </div>
+
+      <!-- Purple Journal -->
+      <div v-if="user.customization.theme_no == 3.3">
+        <v-img
+          src="http://www.mataonme.com/assets/images/14.png"
+          @mousemove="onMouseOver(link.id)"
+          @mouseout="onMouseOut(link.id)"
+          v-for="(link, index) in SortBylinksOrder(links)"
+          :id="link.id"
+          :key="index"
+          @click="analytic(link)"
+          :style="`
+                        font-size: ${user.customization.fontSize}px;
+                        font-weight: ${user.customization.fontWeight};
+                    `"
+        >
+          <!-- css link description -->
+          <!-- Styles for the link description font -->
+          <div
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+
+              align-items: center;
+              overflow: hidden;
+              text-align: center;
+            "
+          >
+            {{ link.name }} 
+          </div>
+        </v-img>
+      </div>
+
+    
         <!-- / Links -->
 
         <!-- Social media links -->
@@ -218,7 +671,7 @@
         <div style="display: flex; justify-content: center">
           <a href="/">
             <v-img
-              style="mix-blend-mode: difference; "
+              style="mix-blend-mode: difference"
               contain
               :src="JSON.parse(website).logo"
               class="linkPageLogo"

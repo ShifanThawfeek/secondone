@@ -1,8 +1,701 @@
 <template>
   <div>
     <v-layout row wrap justify-center class="mt-7">
-      <v-flex xs11 sm11 md11 lg7 xl5 class="px-5">
+      <v-flex xs11 sm11 md11 lg7 xl5 class="px-5">    
+
+        <!-- Starter templates -->
+        <!-- <v-card elevation="0" class="mb-5">
+          <v-card-title>Starter templates</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text>
+            <v-form ref="themesForm" v-model="themesForm">
+              <v-radio-group v-model="theme" :rules="[rules.required]">
+                <v-radio label="Light" value="light"></v-radio>
+                <v-radio label="Blue" value="blue"></v-radio>
+              </v-radio-group>
+              <div style="display: flex; justify-content: flex-end">
+                <v-btn
+                  color="cyan accent-3"
+                  elevation="0"
+                  class="white--text"
+                  large
+                  @click="saveTheme"
+                  >Save</v-btn
+                >
+              </div>
+            </v-form>
+          </v-card-text>
+        </v-card> -->
+        <!-- / Starter templates -->
+
+        <!-- Profile Image Upload -->
+        <v-card elevation="0" class="mb-5">
+          <v-card-title class="grey--text">Upload profile image</v-card-title>
+          <v-card-text>
+            <v-form ref="form" v-model="valid">
+              <form enctype="multipart/form-data">
+                <v-alert type="info" border="left" v-if="imageLoading"
+                  >Uploading the image ...</v-alert
+                >
+                <errors
+                  :success="imageSuccess"
+                  :failure="imageFailure"
+                  :message="imageMessage"
+                ></errors>
+
+                <v-file-input
+                  v-model="profile"
+                  accept="image/*"
+                  label="Profile image"
+                  :rules="[rules.required]"
+                  outlined
+                ></v-file-input>
+
+                <v-btn
+                  color="cyan accent-3"
+                  elevation="0"
+                  class="white--text"
+                  large
+                  @click="uploadImage"
+                  >Save</v-btn
+                >
+              </form>
+            </v-form>
+          </v-card-text>
+        </v-card>
+        <!-- / Profile Image Upload -->
+
+        <!-- Pre built themes -->
+        <v-card elevation="0" class="mb-5">
+          <v-flex lg12 class="px-5">
+            <v-col class="shrink">
+              <v-card-title>Themes</v-card-title>
+              <v-divider></v-divider>
+
+              <v-card-text>
+                <v-form ref="themesForm" v-model="themesForm">
+                  <v-radio-group v-model="theme" :rules="[rules.required]">
+                    <!-- from here it will go live themes -->
+                    <v-row ref="themesForm" v-model="themesForm">
+
+                      <!-- Create Your Own Theme -->
+                      <v-col cols="6" sm="4">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/create_your_own.png"
+                        height="200px"
+                        width="150px"
+                        style="border: 1px solid #555"
+                      >
+                        <v-btn
+                          href="#targetDiv"
+                          align="center"
+                          justify="center"
+                          color="#17d8e2"
+                          style="
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            margin-right: -50%;
+                            top: 50%;
+                            left: 50%;
+
+                            display: inline-block;
+                            height: auto;
+                            white-space: normal;
+                          "
+                        >
+                          <v-img
+                            icon
+                            src="assets/images/lock.png"
+                            class="ml-3 img-fluid"
+                            width="25px"
+                            height="25px"
+                            style="
+                              position: absolute;
+                              transform: translate(-50%, -50%);
+                              margin-right: -50%;
+                              top: 50%;
+                              left: 0%;
+                            "
+                          >
+                          </v-img>
+                          <p
+                            style="
+                              margin-bottom: 10px;
+                              margin-top: 10px;
+                              margin-left: 27px;
+                            "
+                          >
+                            Create Your Own Theme
+                          </p>
+                        </v-btn>
+                      </v-img>
+
+                      <v-radio
+                        style="display: none"
+                        label=""
+                        value="light"
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Light -->
+                      <v-col cols="6" sm="4">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/light.png"
+                        height="200px"
+                        width="150px"
+                      ></v-img>
+                      <v-radio label="Light" value="light"></v-radio>
+                    </v-col>
+
+                      <!-- Blue -->
+                      <v-col cols="6" sm="4">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/blue.png"
+                        height="200px"
+                        width="150px"
+                      ></v-img>
+                      <v-radio label="Blue" value="blue"></v-radio>
+                    </v-col>
+
+                      <!-- Purple Dream -->
+                      <v-col cols="6" sm="4">
+                        <v-img
+                          src="https://www.mataonme.com/assets/images/_2.png"
+                          height="200px"
+                          width="150px"
+                        ></v-img>
+                        <v-radio label="Purple Dream" value="theme_4"></v-radio>
+                      </v-col>
+
+                      <!-- Shortcake -->
+                      <v-col cols="6" sm="4">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_3.png"
+                        height="200px"
+                        width="150px"
+                      >
+                        <div class="fill-height bottom-gradient"></div>
+                      </v-img>
+                      <v-radio label="Shortcake" value="themeimage2"></v-radio>
+                    </v-col>
+
+                      <!-- Rainbow Sketch -->
+                      <v-col cols="6" sm="4" v-if="user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_4.png"
+                        height="200px"
+                        width="150px"
+                      >
+                      </v-img>
+                      <v-radio
+                        label="Rainbow Sketch"
+                        value="themeimage"
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Rainbow Sketch Go Pro-->
+                      <v-col cols="6" sm="4" v-if="!user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_4.png"
+                        height="200px"
+                        width="150px"
+                      >
+                        <v-btn
+                          v-if="!user.is_subscribed"
+                          href="/upgrade"
+                          align="center"
+                          justify="center"
+                          color="#17d8e2"
+                          style="
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            margin-right: -50%;
+                            top: 50%;
+                            left: 50%;
+
+                            height: auto;
+                            white-space: normal;
+                          "
+                        >
+                          <v-img
+                            icon
+                            src="assets/images/lock.png"
+                            class="ml-3 img-fluid"
+                            width="25px"
+                            height="25px"
+                            style="
+                              position: absolute;
+                              transform: translate(-50%, -50%);
+                              margin-right: -50%;
+                              top: 50%;
+                              left: 0%;
+                            "
+                          >
+                          </v-img>
+                          <p
+                            style="
+                              margin-bottom: 10px;
+                              margin-top: 10px;
+                              margin-left: 27px;
+                            "
+                          >
+                            Pro
+                          </p>
+                        </v-btn>
+                      </v-img>
+
+                      <v-radio
+                        label="Rainbow Sketch"
+                        value="themeimage"
+                        disabled
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Retro -->
+                      <v-col cols="6" sm="4" v-if="user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_5.png"
+                        height="200px"
+                        width="150px"
+                      ></v-img>
+                      <v-radio label="Retro" value="secondrow1"></v-radio>
+                    </v-col>
+
+                      <!-- Retro Go Pro-->
+                      <v-col cols="6" sm="4" v-if="!user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_5.png"
+                        height="200px"
+                        width="150px"
+                      >
+                        <v-btn
+                          v-if="!user.is_subscribed"
+                          href="/upgrade"
+                          align="center"
+                          justify="center"
+                          color="#17d8e2"
+                          style="
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            margin-right: -50%;
+                            top: 50%;
+                            left: 50%;
+
+                            height: auto;
+                            white-space: normal;
+                          "
+                        >
+                          <v-img
+                            icon
+                            src="assets/images/lock.png"
+                            class="ml-3 img-fluid"
+                            width="25px"
+                            height="25px"
+                            style="
+                              position: absolute;
+                              transform: translate(-50%, -50%);
+                              margin-right: -50%;
+                              top: 50%;
+                              left: 0%;
+                            "
+                          >
+                          </v-img>
+                          <p
+                            style="
+                              margin-bottom: 10px;
+                              margin-top: 10px;
+                              margin-left: 27px;
+                            "
+                          >
+                            Pro
+                          </p>
+                        </v-btn>
+                      </v-img>
+
+                      <v-radio
+                        label="Retro"
+                        value="secondrow1"
+                        disabled
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Diary Clouds -->
+                      <v-col cols="6" sm="4" v-if="user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_7.png"
+                        height="200px"
+                        width="150px"
+                      >
+                      </v-img>
+                      <v-radio
+                        label="Diary Clouds"
+                        value="secondrow2"
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Diary Clouds Go Pro-->
+                      <v-col cols="6" sm="4" v-if="!user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_7.png"
+                        height="200px"
+                        width="150px"
+                      >
+                        <v-btn
+                          v-if="!user.is_subscribed"
+                          href="/upgrade"
+                          align="center"
+                          justify="center"
+                          color="#17d8e2"
+                          style="
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            margin-right: -50%;
+                            top: 50%;
+                            left: 50%;
+
+                            height: auto;
+                            white-space: normal;
+                          "
+                        >
+                          <v-img
+                            icon
+                            src="assets/images/lock.png"
+                            class="ml-3 img-fluid"
+                            width="25px"
+                            height="25px"
+                            style="
+                              position: absolute;
+                              transform: translate(-50%, -50%);
+                              margin-right: -50%;
+                              top: 50%;
+                              left: 0%;
+                            "
+                          >
+                          </v-img>
+                          <p
+                            style="
+                              margin-bottom: 10px;
+                              margin-top: 10px;
+                              margin-left: 27px;
+                            "
+                          >
+                            Pro
+                          </p>
+                        </v-btn>
+                      </v-img>
+
+                      <v-radio
+                        label="Diary Clouds"
+                        value="secondrow2"
+                        disabled
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Mono.KR -->
+                      <v-col cols="6" sm="4" v-if="user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_8.png"
+                        height="200px"
+                        width="150px"
+                      >
+                      </v-img>
+                      <v-radio label="Mono.KR" value="secondrow3"></v-radio>
+                    </v-col>
+
+                      <!-- Mono.KR Go Pro-->
+                      <v-col cols="6" sm="4" v-if="!user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_8.png"
+                        height="200px"
+                        width="150px"
+                      >
+                        <v-btn
+                          v-if="!user.is_subscribed"
+                          href="/upgrade"
+                          align="center"
+                          justify="center"
+                          color="#17d8e2"
+                          style="
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            margin-right: -50%;
+                            top: 50%;
+                            left: 50%;
+
+                            height: auto;
+                            white-space: normal;
+                          "
+                        >
+                          <v-img
+                            icon
+                            src="assets/images/lock.png"
+                            class="ml-3 img-fluid"
+                            width="25px"
+                            height="25px"
+                            style="
+                              position: absolute;
+                              transform: translate(-50%, -50%);
+                              margin-right: -50%;
+                              top: 50%;
+                              left: 0%;
+                            "
+                          >
+                          </v-img>
+                          <p
+                            style="
+                              margin-bottom: 10px;
+                              margin-top: 10px;
+                              margin-left: 27px;
+                            "
+                          >
+                            Pro
+                          </p>
+                        </v-btn>
+                      </v-img>
+
+                      <v-radio
+                        label="Mono.KR"
+                        value="secondrow3"
+                        disabled
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Peanut Butter -->
+                      <v-col cols="6" sm="4" v-if="user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_9.png"
+                        height="200px"
+                        width="150px"
+                      ></v-img>
+                      <v-radio
+                        label="Peanut Butter"
+                        value="thirdrow1"
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Peanut Butter Go Pro-->
+                      <v-col cols="6" sm="4" v-if="!user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_9.png"
+                        height="200px"
+                        width="150px"
+                      >
+                        <v-btn
+                          v-if="!user.is_subscribed"
+                          href="/upgrade"
+                          align="center"
+                          justify="center"
+                          color="#17d8e2"
+                          style="
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            margin-right: -50%;
+                            top: 50%;
+                            left: 50%;
+
+                            height: auto;
+                            white-space: normal;
+                          "
+                        >
+                          <v-img
+                            icon
+                            src="assets/images/lock.png"
+                            class="ml-3 img-fluid"
+                            width="25px"
+                            height="25px"
+                            style="
+                              position: absolute;
+                              transform: translate(-50%, -50%);
+                              margin-right: -50%;
+                              top: 50%;
+                              left: 0%;
+                            "
+                          >
+                          </v-img>
+                          <p
+                            style="
+                              margin-bottom: 10px;
+                              margin-top: 10px;
+                              margin-left: 27px;
+                            "
+                          >
+                            Pro
+                          </p>
+                        </v-btn>
+                      </v-img>
+
+                      <v-radio
+                        label="Peanut Butter"
+                        value="thirdrow1"
+                        disabled
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Summer Pool -->
+                      <v-col cols="6" sm="4" v-if="user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_10.png"
+                        height="200px"
+                        width="150px"
+                      >
+                        <div class="fill-height bottom-gradient"></div>
+                      </v-img>
+                      <v-radio label="Summer Pool" value="thirdrow2"></v-radio>
+                    </v-col>
+
+                      <!-- Summer Pool Go Pro -->
+                      <v-col cols="6" sm="4" v-if="!user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_10.png"
+                        height="200px"
+                        width="150px"
+                      >
+                        <v-btn
+                          v-if="!user.is_subscribed"
+                          href="/upgrade"
+                          align="center"
+                          justify="center"
+                          color="#17d8e2"
+                          style="
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            margin-right: -50%;
+                            top: 50%;
+                            left: 50%;
+
+                            height: auto;
+                            white-space: normal;
+                          "
+                        >
+                          <v-img
+                            icon
+                            src="assets/images/lock.png"
+                            class="ml-3 img-fluid"
+                            width="25px"
+                            height="25px"
+                            style="
+                              position: absolute;
+                              transform: translate(-50%, -50%);
+                              margin-right: -50%;
+                              top: 50%;
+                              left: 0%;
+                            "
+                          >
+                          </v-img>
+                          <p
+                            style="
+                              margin-bottom: 10px;
+                              margin-top: 10px;
+                              margin-left: 27px;
+                            "
+                          >
+                            Pro
+                          </p>
+                        </v-btn>
+                      </v-img>
+
+                      <v-radio
+                        label="Summer Pool"
+                        value="thirdrow2"
+                        disabled
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Purple Journal -->
+                      <v-col cols="6" sm="4" v-if="user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_11.png"
+                        height="200px"
+                        width="150px"
+                      >
+                      </v-img>
+                      <v-radio
+                        label="Purple Journal"
+                        value="thirdrow3"
+                      ></v-radio>
+                    </v-col>
+
+                      <!-- Purple Journal Go Pro-->
+                      <v-col cols="6" sm="4" v-if="!user.is_subscribed">
+                      <v-img
+                        src="https://www.mataonme.com/assets/images/_11.png"
+                        height="200px"
+                        width="150px"
+                      >
+                        <v-btn
+                          v-if="!user.is_subscribed"
+                          href="/upgrade"
+                          align="center"
+                          justify="center"
+                          color="#17d8e2"
+                          style="
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            margin-right: -50%;
+                            top: 50%;
+                            left: 50%;
+
+                            height: auto;
+                            white-space: normal;
+                          "
+                        >
+                          <v-img
+                            icon
+                            src="assets/images/lock.png"
+                            class="ml-3 img-fluid"
+                            width="25px"
+                            height="25px"
+                            style="
+                              position: absolute;
+                              transform: translate(-50%, -50%);
+                              margin-right: -50%;
+                              top: 50%;
+                              left: 0%;
+                            "
+                          >
+                          </v-img>
+                          <p
+                            style="
+                              margin-bottom: 10px;
+                              margin-top: 10px;
+                              margin-left: 27px;
+                            "
+                          >
+                            Pro
+                          </p>
+                        </v-btn>
+                      </v-img>
+
+                      <v-radio
+                        label="Purple Journal"
+                        value="thirdrow3"
+                        disabled
+                      ></v-radio>
+                    </v-col>
+                    </v-row>
+
+                    <!-- end of here it will go live themes -->
+                  </v-radio-group>
+
+                  <div style="display: flex; justify-content: flex-end">
+                    <v-btn
+                      color="cyan accent-3"
+                      elevation="0"
+                      class="white--text"
+                      large
+                      @click="saveTheme"
+                      >Save</v-btn
+                    >
+                  </div>
+                </v-form>
+              </v-card-text>
+            </v-col>
+          </v-flex>
+        </v-card>
+        <!-- / Pre built themes -->
+
         <!-- Customization -->
+         <div id="targetDiv"></div>
         <v-card elevation="0" class="mb-5">
           <v-card-title class="grey--text"
             >Link page customization</v-card-title
@@ -526,8 +1219,6 @@
                   </v-btn-toggle>
                 </div>
 
-      
-
                 <!-- <v-container>
     <v-layout wrap align-content-space-around text-xs-center>
       <v-flex xs3><v-card color="blue"><v-card-text class="px-0">1</v-card-text></v-card></v-flex>
@@ -535,7 +1226,6 @@
       <v-flex xs3><v-card color="blue"><v-card-text class="px-0">3</v-card-text></v-card></v-flex>
     </v-layout>
 </v-container> -->
-
               </v-layout>
               <br />
             </v-form>
@@ -549,70 +1239,10 @@
         </v-card>
         <!-- / Customization -->
 
-        <!-- Starter templates -->
-        <v-card elevation="0" class="mb-5">
-          <v-card-title>Starter templates</v-card-title>
-          <v-divider></v-divider>
-          <v-card-text>
-            <v-form ref="themesForm" v-model="themesForm">
-              <v-radio-group v-model="theme" :rules="[rules.required]">
-                <v-radio label="Light" value="light"></v-radio>
-                <v-radio label="Blue" value="blue"></v-radio>
-              </v-radio-group>
-              <div style="display: flex; justify-content: flex-end">
-                <v-btn
-                  color="cyan accent-3"
-                  elevation="0"
-                  class="white--text"
-                  large
-                  @click="saveTheme"
-                  >Save</v-btn
-                >
-              </div>
-            </v-form>
-          </v-card-text>
-        </v-card>
-        <!-- / Starter templates -->
-
-        <!-- Profile Image Upload -->
-        <v-card elevation="0" class="mb-5">
-          <v-card-title class="grey--text">Upload profile image</v-card-title>
-          <v-card-text>
-            <v-form ref="form" v-model="valid">
-              <form enctype="multipart/form-data">
-                <v-alert type="info" border="left" v-if="imageLoading"
-                  >Uploading the image ...</v-alert
-                >
-                <errors
-                  :success="imageSuccess"
-                  :failure="imageFailure"
-                  :message="imageMessage"
-                ></errors>
-
-                <v-file-input
-                  v-model="profile"
-                  accept="image/*"
-                  label="Profile image"
-                  :rules="[rules.required]"
-                  outlined
-                ></v-file-input>
-
-                <v-btn
-                  color="cyan accent-3"
-                  elevation="0"
-                  class="white--text"
-                  large
-                  @click="uploadImage"
-                  >Save</v-btn
-                >
-              </form>
-            </v-form>
-          </v-card-text>
-        </v-card>
-
-        <!-- / Profile Image Upload -->
+      <!-- / Profile Image Upload -->
       </v-flex>
 
+      <!-- Links Page Preview In Customization Page -->
       <v-flex xs10 sm10 md10 lg5 xl10 row wrap justify-center>
         <iframe
           ref="iframe"
@@ -707,7 +1337,7 @@ export default {
       theme: "",
       light: {
         name: "Light",
-        colors: ["white", "#28abb2"],
+        colors: ["ffffff", "#ffffff"],
       },
       blue: {
         name: "Blue",
@@ -918,26 +1548,60 @@ export default {
         theme = this.blue;
         theme = {
           pageBackground: this.blue,
-          iconColor: "#FFFFFF",
-          fontColor: "#FFFFFF",
-          fontColorHover: "#FFFFFF",
-          buttonBackground: "#17D8E2",
-          buttonBackgroundHover: "#17D8E2",
+          iconColor: "#1a211b",
+          fontColor: "#17D8E2",
+          fontColorHover: "#c42344",
+          buttonBackground: "#ffffff",
+          buttonBackgroundHover: "#ffffff",
           buttonBorder: "#17D8E2",
-          buttonBorderHover: "#17D8E2",
-          usernameFontColor: "#FFFFFF",
+          buttonBorderHover: "#e2c717",
+          usernameFontColor: "#ffffff",
+          theme_no: "",
         };
       } else {
         theme = this.light;
         theme = {
+          fontColor: "#FFFFFF",
           pageBackground: this.light,
-          iconColor: "#FFFFFF",
+          buttonBackgroundHover: "#17D8E2",
+          buttonBackground: "#17D8E2",
+          iconColor: "#17D8E2",
           buttonborderHover: "#17D8E2",
-          fontColorHover: "#FFFFFF",
-          iconColor: "#FFFFFF",
-          usernameFontColor: "#FFFFFF",
+          usernameFontColor: "#17D8E2",
+          theme_no: "",
         };
       }
+
+      //theme properties for Purple Dream
+      if (this.theme == "theme_4") {
+        theme = this.theme_4;
+        theme = {
+          pageBackground: "https://www.mataonme.com/assets/images/2_2.png",
+          iconColor: "#7834FF",
+          usernameFontColor: "#FFFFFF",
+          buttonBackgroundHover: "",
+          theme_no: "1.1",
+        };
+      }
+
+        //theme properties for shortcake
+        if (this.theme == "themeimage2") {
+        theme = this.themeimage2;
+        theme = {
+          pageBackground: "https://www.mataonme.com/assets/images/3_3.png",
+          iconColor: "#d43b24",
+          usernameFontColor: "#B47343",
+          iconColor: "#B47343",
+          theme_no: "2",
+          buttonBackground: "",
+          buttonBackgroundHover: "",
+          buttonborderHover: "",
+          buttonBorderSize: 0,
+          buttonBorderSizeHover: 0,
+          buttonborderHover: "",
+        };
+      }
+
       axios
         .put("/change/background", theme)
         .then((res) => {
